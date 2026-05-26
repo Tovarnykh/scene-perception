@@ -7,19 +7,23 @@ name = "scene-perception-yolo11-midas"
 version = "0.1.0"
 description = "Scene perception prototype using YOLO11 detection and MiDaS depth estimation."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
-    "numpy>=1.26",
-    "opencv-python>=4.9",
-    "pillow>=10.0",
-    "torch>=2.2",
-    "torchvision>=0.17",
-    "ultralytics>=8.3",
+    "ultralytics",
+    "torch",
+    "torchvision",
+    "opencv-python",
+    "numpy",
+    "matplotlib",
+    "pillow",
+    "pandas",
+    "tqdm",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.0",
+    "pytest",
+    "ruff",
 ]
 
 [project.scripts]
@@ -31,3 +35,7 @@ include = ["src*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

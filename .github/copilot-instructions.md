@@ -1,9 +1,11 @@
-# Copilot Instructions
+This repository is a Python Computer Vision MVP.
 
-This project combines YOLO11 object detection with MiDaS depth estimation for scene perception.
+Follow AGENTS.md as the main project instruction file.
 
-- Keep code small, typed, and testable.
-- Prefer pure functions for geometry, association, and schema conversion logic.
-- Keep model loading isolated from business logic so tests can run without GPU or model weights.
-- Do not commit large model weights, generated images, or local datasets.
-- Store reproducible outputs in `artifacts/json/` and visual outputs in `artifacts/images/`.
+Important constraints:
+- Use YOLO11 for object detection.
+- Use MiDaS for monocular relative depth estimation.
+- Never describe depth as metric distance.
+- Keep MVP focused on single-image inference.
+- Prefer small typed modules and pytest tests.
+- Validate with ruff and pytest before suggesting commits.
