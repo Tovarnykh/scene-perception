@@ -3,7 +3,7 @@ from __future__ import annotations
 import numpy as np
 
 from src.association import associate_depth, median_depth_for_box
-from src.schemas import Detection
+from src.schemas import BBox, Detection
 
 
 def test_median_depth_for_box() -> None:
@@ -20,10 +20,17 @@ def test_median_depth_for_box() -> None:
 
 def test_associate_depth() -> None:
     depth_map = np.ones((4, 4), dtype=float) * 2.5
-    detections = [Detection(label="person", confidence=0.9, bbox=(1, 1, 3, 3))]
+    detections = [
+        Detection(
+            class_id=0,
+            class_name="person",
+            confidence=0.9,
+            bbox=BBox(x1=1, y1=1, x2=3, y2=3),
+        )
+    ]
 
     objects = associate_depth(detections, depth_map)
 
     assert len(objects) == 1
-    assert objects[0].label == "person"
-    assert objects[0].depth == 2.5
+    assert objects[0].class_name == "person"
+    assert objects[0].relative_depth_score == 2.5
