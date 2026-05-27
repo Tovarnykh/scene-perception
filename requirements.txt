@@ -7,5 +7,6 @@ matplotlib
 pillow
 pandas
 tqdm
+timm
 pytest
 ruff

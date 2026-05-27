@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+from pathlib import Path
 from typing import Any
 
 from .schemas import BBox, Detection
@@ -20,7 +22,16 @@ class ObjectDetector:
         if confidence_threshold < 0.0 or confidence_threshold > 1.0:
             raise ValueError(f"confidence_threshold must be in [0, 1]: {confidence_threshold}")
 
-        from ultralytics import YOLO
+        _configure_ultralytics_dir()
+
+        try:
+            from ultralytics import YOLO
+        except ModuleNotFoundError as error:
+            raise ModuleNotFoundError(
+                "Missing dependency 'ultralytics'. Install project dependencies with "
+                "`python -m pip install -r requirements.txt` in the same environment "
+                "used to run `python -m src.cli`."
+            ) from error
 
         self.model_name = model_name
         self.confidence_threshold = confidence_threshold
@@ -92,6 +103,10 @@ def _class_name_from_names(names: Any, class_id: int) -> str:
     if isinstance(names, list) and 0 <= class_id < len(names):
         return str(names[class_id])
     return str(class_id)
+
+
+def _configure_ultralytics_dir() -> None:
+    os.environ.setdefault("YOLO_CONFIG_DIR", str(Path.cwd()))
 
 
 def detect_objects(image_path: str) -> list[Detection]:

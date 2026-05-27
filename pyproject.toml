@@ -18,6 +18,7 @@ dependencies = [
     "pillow",
     "pandas",
     "tqdm",
+    "timm",
 ]
 
 [project.optional-dependencies]

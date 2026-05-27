@@ -219,3 +219,17 @@ __marimo__/
 
 
 .vscode/
+
+data/samples/*.jpg
+data/samples/*.jpeg
+data/samples/*.png
+
+Ultralytics/
+*.pt
+*.pth
+*.onnx
+
+artifacts/images/*
+!artifacts/images/.gitkeep
+artifacts/json/*
+!artifacts/json/.gitkeep
