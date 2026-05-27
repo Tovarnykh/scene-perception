@@ -229,7 +229,5 @@ Ultralytics/
 *.pth
 *.onnx
 
-artifacts/images/*
-!artifacts/images/.gitkeep
 artifacts/json/*
 !artifacts/json/.gitkeep
